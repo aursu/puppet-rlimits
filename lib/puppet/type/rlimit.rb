@@ -45,7 +45,7 @@ username
 @:<max_gid>
 %:gid"
     validate do |value|
-        fail ArgumentError, "#{domain} has restricted format (see man 5 limits.conf)" unless value =~ %r{^(\*|%(\w+|:\d+)?|@?(\w+|\d+:(\d+)?|(\d+)?:\d+))}
+      raise ArgumentError, "#{domain} has restricted format (see man 5 limits.conf)" unless value =~ %r{^(\*|%(\w+|:\d+)?|@?(\w+|\d+:(\d+)?|(\d+)?:\d+))}
     end
     isnamevar
   end
