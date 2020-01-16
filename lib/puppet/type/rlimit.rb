@@ -109,7 +109,7 @@ username
     end
 
     validate do
-      if self[:domain] =~ /^%/
+      if self[:domain] =~ %r{^%}
         raise ArgumentError, 'domain which begins with % should represent only maxlogins limit' unless self[:item] == :maxlogins
       end
       if self[:item] == :nice || self[:item] == :priority
