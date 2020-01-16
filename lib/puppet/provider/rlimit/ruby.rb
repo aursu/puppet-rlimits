@@ -39,11 +39,11 @@ Puppet::Type.type(:rlimit).provide(:ruby) do
     #  file; for now assuming that this type is only used on
     #  small-ish config files that can fit into memory without
     #  too much trouble.
-    if File.file?(path)
-      @lines ||= File.readlines(path)
-    else
-      @lines ||= []
-    end
+    @lines ||= if File.file?(path)
+                 File.readlines(path)
+               else
+                 []
+               end
   end
 
   def domain
