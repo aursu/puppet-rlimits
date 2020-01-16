@@ -1,0 +1,30 @@
+{
+  "name": "aursu-rlimits",
+  "version": "0.1.0",
+  "author": "aursu",
+  "summary": "Manage configuration files for pam_limits module",
+  "license": "Apache-2.0",
+  "source": "https://github.com/aursu/puppet-rlimits.git",
+  "project_page": "https://github.com/aursu/puppet-rlimits",
+  "issues_url": "https://github.com/aursu/puppet-rlimits/issues",
+  "dependencies": [
+
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.10.0 < 7.0.0"
+    }
+  ],
+  "pdk-version": "1.14.0",
+  "template-url": "pdk-default#1.14.0",
+  "template-ref": "1.14.0-0-g1bf3a4e"
+}
