@@ -1,10 +1,10 @@
 Puppet::Type.type(:rlimit).provide(:ruby) do
 # https://docs.puppet.com/guides/provider_development.html
   def exists?
-    if count_matches(match_regex) > 0
-      lines.find do |line|
-        line.chomp =~ match_regex_value(value)
-      end
+    return false unless count_matches(match_regex) > 0
+
+    lines.find do |line|
+      line.chomp =~ match_regex_value(value)
     end
   end
 
@@ -21,11 +21,11 @@ Puppet::Type.type(:rlimit).provide(:ruby) do
   end
 
   def destroy
-    if count_matches(match_regex) > 0
-      local_lines = lines
-      File.open(resource[:path], 'w') do |fh|
-        fh.write(local_lines.reject { |l| match_regex.match(l) }.join(''))
-      end
+    return unless count_matches(match_regex) > 0
+
+    local_lines = lines
+    File.open(resource[:path], 'w') do |fh|
+      fh.write(local_lines.reject { |l| match_regex.match(l) }.join(''))
     end
   end
 
