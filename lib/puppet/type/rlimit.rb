@@ -11,23 +11,23 @@ Puppet::Type.newtype(:rlimit) do
   end
 
   def self.title_patterns
-  [
     [
-      %r{^(.*)\/(.*)\/(.*)$},
       [
-        [:domain],
-        [:item],
-        [:type],
+        %r{^(.*)\/(.*)\/(.*)$},
+        [
+          [:domain],
+          [:item],
+          [:type],
+        ],
       ],
-    ],
-    [
-      %r{^(.*)\/(.*)},
       [
-        [:domain],
-        [:item],
+        %r{^(.*)\/(.*)},
+        [
+          [:domain],
+          [:item],
+        ],
       ],
-    ],
-  ]
+    ]
   end
 
   newparam(:domain) do
