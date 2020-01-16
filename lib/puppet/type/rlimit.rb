@@ -1,6 +1,6 @@
 # https://docs.puppet.com/guides/custom_types.html
 Puppet::Type.newtype(:rlimit) do
-  @doc = "Manage resource limit record"
+  @doc = 'Manage resource limit record'
   # This property uses three methods on the provider: "create", "destroy",
   # and "exists?". The last method, somewhat obviously, is a boolean to
   # determine if the resource current exists. If a resource’s ensure property
@@ -80,7 +80,7 @@ username
   # the resource is out of sync), then the owner property will call the
   # "owner=" method to set the state on disk.
   newparam(:name) do
-    desc "The resource limit name"
+    desc 'The resource limit name'
 
     munge do |value|
       "#{self[:domain]}/#{self[:item]}/#{self[:type]}"
@@ -88,7 +88,7 @@ username
   end
 
   newparam(:value) do
-    desc "The resource value"
+    desc 'The resource value'
 
     newvalues(:unlimited, %r{^-?\d+$})
     aliasvalue(:infinity, :unlimited)
