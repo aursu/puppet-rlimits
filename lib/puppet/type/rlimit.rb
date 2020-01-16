@@ -112,8 +112,8 @@ username
       if self[:domain] =~ /^%/
         raise ArgumentError, 'domain which begins with % should represent only maxlogins limit' unless self[:item] == :maxlogins
       end
-      if self[:item] == :nice or self[:item] == :priority
-        raise ArgumentError, 'nice and priority values should have fixed range' unless self[:value] >= -19 and self[:value] < 20
+      if self[:item] == :nice || self[:item] == :priority
+        raise ArgumentError, 'nice and priority values should have fixed range' unless self[:value] >= -19 && self[:value] < 20
       end
     end
 end
