@@ -56,7 +56,7 @@ Puppet::Type.type(:rlimit).provide(:ruby) do
 
   def type
     stype = resource[:type].to_s
-    @type ||= stype == "any" ? "-" : stype
+    @type ||= stype == 'any' ? '-' : stype
   end
 
   def value
