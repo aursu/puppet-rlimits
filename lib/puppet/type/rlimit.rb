@@ -61,59 +61,59 @@ username
     isnamevar
   end
 
-    newparam(:type) do
-      newvalues(:soft, :hard, :any)
-      munge do |value|
-        # converting to_s in case its a boolean
-        value = :any if value.nil?
-        value = :any if value.empty?
-        value = value.to_sym if value.is_a?(String)
-        value
-      end
-      defaultto :any
-      isnamevar
+  newparam(:type) do
+    newvalues(:soft, :hard, :any)
+    munge do |value|
+      # converting to_s in case its a boolean
+      value = :any if value.nil?
+      value = :any if value.empty?
+      value = value.to_sym if value.is_a?(String)
+      value
     end
+    defaultto :any
+    isnamevar
+  end
 
-    # If you define a property named "owner", then when you are retrieving the
-    # state of your resource, then the "owner" property will call the "owner"
-    # method on the provider. In turn, when you are setting the state (because
-    # the resource is out of sync), then the owner property will call the
-    # "owner=" method to set the state on disk.
-    newparam(:name) do
-      desc "The resource limit name"
+  # If you define a property named "owner", then when you are retrieving the
+  # state of your resource, then the "owner" property will call the "owner"
+  # method on the provider. In turn, when you are setting the state (because
+  # the resource is out of sync), then the owner property will call the
+  # "owner=" method to set the state on disk.
+  newparam(:name) do
+    desc "The resource limit name"
 
-      munge do |value|
-        "#{self[:domain]}/#{self[:item]}/#{self[:type]}"
-      end
+    munge do |value|
+      "#{self[:domain]}/#{self[:item]}/#{self[:type]}"
     end
+  end
 
-    newparam(:value) do
-      desc "The resource value"
+  newparam(:value) do
+    desc "The resource value"
 
-      newvalues(:unlimited, /^-?\d+$/ )
-      aliasvalue(:infinity, :unlimited)
+    newvalues(:unlimited, /^-?\d+$/ )
+    aliasvalue(:infinity, :unlimited)
 
-      munge do |value|
-        case value
-          when -1
-            :unlimited
-          when /^\d+$/, /^-\d+$/
-            Integer(value)
-          when Integer, Symbol
-            value
-          else
-            raise ArgumentError, "Invalid value #{value.inspect}"
-        end
-      end
-      defaultto :unlimited
-    end
-
-    validate do
-      if self[:domain] =~ %r{^%}
-        raise ArgumentError, 'domain which begins with % should represent only maxlogins limit' unless self[:item] == :maxlogins
-      end
-      if self[:item] == :nice || self[:item] == :priority
-        raise ArgumentError, 'nice and priority values should have fixed range' unless self[:value] >= -19 && self[:value] < 20
+    munge do |value|
+      case value
+        when -1
+          :unlimited
+        when /^\d+$/, /^-\d+$/
+          Integer(value)
+        when Integer, Symbol
+          value
+        else
+          raise ArgumentError, "Invalid value #{value.inspect}"
       end
     end
+    defaultto :unlimited
+  end
+
+  validate do
+    if self[:domain] =~ %r{^%}
+      raise ArgumentError, 'domain which begins with % should represent only maxlogins limit' unless self[:item] == :maxlogins
+    end
+    if self[:item] == :nice || self[:item] == :priority
+      raise ArgumentError, 'nice and priority values should have fixed range' unless self[:value] >= -19 && self[:value] < 20
+    end
+  end
 end
