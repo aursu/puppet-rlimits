@@ -1,5 +1,5 @@
 Puppet::Type.type(:rlimit).provide(:ruby) do
-# https://docs.puppet.com/guides/provider_development.html
+  # https://docs.puppet.com/guides/provider_development.html
   def exists?
     return false unless count_matches(match_regex) > 0
 
