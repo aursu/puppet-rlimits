@@ -24,7 +24,7 @@ Puppet::Type.type(:rlimit).provide(:ruby) do
     if count_matches(match_regex) > 0
       local_lines = lines
       File.open(resource[:path],'w') do |fh|
-        fh.write(local_lines.reject{|l| match_regex.match(l) }.join(''))
+        fh.write(local_lines.reject { |l| match_regex.match(l) }.join(''))
       end
     end
   end
@@ -77,7 +77,7 @@ Puppet::Type.type(:rlimit).provide(:ruby) do
   end
 
   def count_matches(regex)
-    lines.select{|l| l.match(regex)}.size
+    lines.select { |l| l.match(regex) }.size
   end
 
   ##
