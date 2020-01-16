@@ -82,7 +82,7 @@ username
   newparam(:name) do
     desc 'The resource limit name'
 
-    munge do |value|
+    munge do
       "#{self[:domain]}/#{self[:item]}/#{self[:type]}"
     end
   end
