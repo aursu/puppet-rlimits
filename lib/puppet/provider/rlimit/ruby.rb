@@ -73,7 +73,7 @@ Puppet::Type.type(:rlimit).provide(:ruby) do
 
   def match_regex_value(value)
     svalue = value.is_a?(String) ? value : value.to_s
-    Regexp.new(/#{Regexp.escape(domain)}\s+#{type}\s+#{item}\s+#{svalue}/)
+    Regexp.new(%r{#{Regexp.escape(domain)}\s+#{type}\s+#{item}\s+#{svalue}})
   end
 
   def count_matches(regex)
