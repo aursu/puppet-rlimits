@@ -45,7 +45,16 @@ The very basic steps needed for a user to get the module up and running. This ca
 
 ## Usage
 
-Include usage examples for common use cases in the **Usage** section. Show your users how to use your module to solve problems, and be sure to include code examples. Include three to five examples of the most important or common tasks a user can accomplish with your module. Show users how to accomplish more complex tasks that involve different types, classes, and functions working in tandem.
+```
+   rlimit { '*/nproc/soft':
+     ensure => present,
+     value  => 4096,
+   }
+
+   rlimit { 'root/nproc/soft':
+     ensure => present,
+   }
+```
 
 ## Reference
 
