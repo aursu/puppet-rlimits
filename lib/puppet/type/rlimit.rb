@@ -15,16 +15,16 @@ Puppet::Type.newtype(:rlimit) do
     [
       %r{^(.*)\/(.*)\/(.*)$},
       [
-        [:domain ],
-        [:item ],
-        [:type ]
+        [:domain],
+        [:item],
+        [:type]
       ]
     ],
     [
       %r{^(.*)\/(.*)},
       [
-        [:domain ],
-        [:item ]
+        [:domain],
+        [:item]
       ]
     ]
   ]
@@ -90,7 +90,7 @@ username
   newparam(:value) do
     desc "The resource value"
 
-    newvalues(:unlimited, %r{^-?\d+$} )
+    newvalues(:unlimited, %r{^-?\d+$})
     aliasvalue(:infinity, :unlimited)
 
     munge do |value|
