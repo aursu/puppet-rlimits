@@ -95,14 +95,14 @@ username
 
     munge do |value|
       case value
-        when -1
-          :unlimited
-        when /^\d+$/, /^-\d+$/
-          Integer(value)
-        when Integer, Symbol
-          value
-        else
-          raise ArgumentError, "Invalid value #{value.inspect}"
+      when -1
+        :unlimited
+      when /^\d+$/, /^-\d+$/
+        Integer(value)
+      when Integer, Symbol
+        value
+      else
+        raise ArgumentError, "Invalid value #{value.inspect}"
       end
     end
     defaultto :unlimited
