@@ -13,7 +13,7 @@ Puppet::Type.newtype(:rlimit) do
   def self.title_patterns
   [
     [
-      /^(.*)\/(.*)\/(.*)$/,
+      %r{^(.*)\/(.*)\/(.*)$},
       [
         [:domain ],
         [:item ],
@@ -21,7 +21,7 @@ Puppet::Type.newtype(:rlimit) do
       ]
     ],
     [
-      /^(.*)\/(.*)/,
+      %r{^(.*)\/(.*)},
       [
         [:domain ],
         [:item ]
@@ -45,7 +45,7 @@ username
 @:<max_gid>
 %:gid"
     validate do |value|
-        fail ArgumentError, "#{domain} has restricted format (see man 5 limits.conf)" unless value =~ /^(\*|%(\w+|:\d+)?|@?(\w+|\d+:(\d+)?|(\d+)?:\d+))/
+        fail ArgumentError, "#{domain} has restricted format (see man 5 limits.conf)" unless value =~ %r{^(\*|%(\w+|:\d+)?|@?(\w+|\d+:(\d+)?|(\d+)?:\d+))}
     end
     isnamevar
   end
@@ -90,14 +90,14 @@ username
   newparam(:value) do
     desc "The resource value"
 
-    newvalues(:unlimited, /^-?\d+$/ )
+    newvalues(:unlimited, %r{^-?\d+$} )
     aliasvalue(:infinity, :unlimited)
 
     munge do |value|
       case value
       when -1
         :unlimited
-      when /^\d+$/, /^-\d+$/
+      when %r{^\d+$}, %r{^-\d+$}
         Integer(value)
       when Integer, Symbol
         value
