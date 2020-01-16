@@ -17,16 +17,16 @@ Puppet::Type.newtype(:rlimit) do
       [
         [:domain],
         [:item],
-        [:type]
-      ]
+        [:type],
+      ],
     ],
     [
       %r{^(.*)\/(.*)},
       [
         [:domain],
-        [:item]
-      ]
-    ]
+        [:item],
+      ],
+    ],
   ]
   end
 
