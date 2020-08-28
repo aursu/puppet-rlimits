@@ -81,30 +81,19 @@ The following parameters are available in the `rlimit` type.
 
 namevar
 
-man 5 limits.conf:
-username
-
-@groupname
-
-*
-
-%             (maxlogins only) -> maxsyslogins
-
-%group        (maxlogins only)
-
-<min_uid>:max_uid
-
-<min_uid>:
-
-:<max_uid>
-
-@<min_gid>:<max_gid>
-
-@<min_gid>:
-
-@:<max_gid>
-
-%:gid
+According to man 5 limits.conf next values are possible:
+- username
+- @groupname
+- *
+- %             (maxlogins only) -> maxsyslogins
+- %group        (maxlogins only)
+- <min_uid>:<max_uid>
+- <min_uid>:
+- :<max_uid>
+- @<min_gid>:<max_gid>
+- @<min_gid>:
+- @:<max_gid>
+- %:gid
 
 ##### `item`
 
