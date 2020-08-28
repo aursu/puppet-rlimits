@@ -33,16 +33,27 @@ Puppet::Type.newtype(:rlimit) do
   newparam(:domain) do
     desc "man 5 limits.conf:
 username
+
 @groupname
+
 *
+
 %             (maxlogins only) -> maxsyslogins
+
 %group        (maxlogins only)
+
 <min_uid>:max_uid
+
 <min_uid>:
+
 :<max_uid>
+
 @<min_gid>:<max_gid>
+
 @<min_gid>:
+
 @:<max_gid>
+
 %:gid"
     validate do |value|
       raise ArgumentError, "#{domain} has restricted format (see man 5 limits.conf)" unless value =~ %r{^(\*|%(\w+|:\d+)?|@?(\w+|\d+:(\d+)?|(\d+)?:\d+))}

@@ -83,16 +83,27 @@ namevar
 
 man 5 limits.conf:
 username
+
 @groupname
+
 *
+
 %             (maxlogins only) -> maxsyslogins
+
 %group        (maxlogins only)
+
 <min_uid>:max_uid
+
 <min_uid>:
+
 :<max_uid>
+
 @<min_gid>:<max_gid>
+
 @<min_gid>:
+
 @:<max_gid>
+
 %:gid
 
 ##### `item`
