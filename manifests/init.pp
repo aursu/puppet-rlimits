@@ -1,9 +1,20 @@
-# @summary A short summary of the purpose of this class
+# @summary Control resource limits environment
 #
-# A description of what this class does
+# Control resource limits environment
 #
 # @example
 #   include rlimits
+#
+# @param manage_folder
+#   Whether to control or not folder /etc/security/limits.d
+#
+# @param purge_folder
+#   Set flag purge on /etc/security/limits.d file resource to cleanup
+#   unmanaged files
+#
+# @param vendor_settings
+#   Setup or not vendors default preset of ulimits (valid for CentOS)
+#
 class rlimits (
   Boolean $manage_folder   = true,
   Boolean $purge_folder    = false,

@@ -51,6 +51,8 @@ username
   end
 
   newparam(:item) do
+    desc "item name (see man 5 limits.conf)"
+
     newvalues(:core, :data, :fsize, :memlock, :nofile, :rss, :stack, :cpu,
               :nproc, :as, :maxlogins, :maxsyslogins, :priority, :locks,
               :sigpending, :msgqueue, :nice, :rtprio)
@@ -62,6 +64,8 @@ username
   end
 
   newparam(:type) do
+    desc "resource limits type (see man 5 limits.conf)"
+
     newvalues(:soft, :hard, :any)
     munge do |value|
       # converting to_s in case its a boolean
