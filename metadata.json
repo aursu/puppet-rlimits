@@ -1,6 +1,6 @@
 {
   "name": "aursu-rlimits",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "aursu",
   "summary": "Manage configuration files for pam_limits module",
   "license": "Apache-2.0",
@@ -21,10 +21,10 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.10.0 < 7.0.0"
+      "version_requirement": ">= 5.5.0 < 8.0.0"
     }
   ],
-  "pdk-version": "1.18.0",
-  "template-url": "pdk-default#1.18.0",
-  "template-ref": "tags/1.18.0-0-g095317c"
+  "pdk-version": "2.7.1",
+  "template-url": "pdk-default#2.7.4",
+  "template-ref": "tags/2.7.4-0-g58edf57"
 }

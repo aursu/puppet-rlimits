@@ -19,8 +19,7 @@ class rlimits (
   Boolean $manage_folder   = true,
   Boolean $purge_folder    = false,
   Boolean $vendor_settings = true,
-)
-{
+) {
   if $manage_folder {
     file { '/etc/security/limits.d':
       ensure  => directory,
@@ -34,7 +33,7 @@ class rlimits (
   }
 
   if $vendor_settings {
-    if $::osfamily == 'RedHat' {
+    if $facts['os']['family'] == 'RedHat' {
       # Default limit for number of user's processes to prevent
       # accidental fork bombs.
       # See rhbz #432903 for reasoning.

@@ -43,20 +43,20 @@ Puppet::Type.newtype(:rlimit) do
 - @<min_gid>:<max_gid>
 - @<min_gid>:
 - @:<max_gid>
-- %:gid"
+- %:<gid>"
 
     validate do |value|
-      raise ArgumentError, "#{domain} has restricted format (see man 5 limits.conf)" unless value =~ %r{^(\*|%(\w+|:\d+)?|@?(\w+|\d+:(\d+)?|(\d+)?:\d+))}
+      raise ArgumentError, "#{domain} has restricted format (see man 5 limits.conf)" unless value.match?(%r{^(\*|%(\w+|:\d+)?|@?(\w+|\d+:(\d+)?|(\d+)?:\d+))})
     end
     isnamevar
   end
 
   newparam(:item) do
-    desc "item name (see man 5 limits.conf)"
+    desc 'item name (see man 5 limits.conf)'
 
     newvalues(:core, :data, :fsize, :memlock, :nofile, :rss, :stack, :cpu,
               :nproc, :as, :maxlogins, :maxsyslogins, :priority, :locks,
-              :sigpending, :msgqueue, :nice, :rtprio)
+              :sigpending, :msgqueue, :nice, :rtprio, :chroot)
     munge do |value|
       # converting to_s in case its a boolean
       value.to_sym
@@ -65,7 +65,7 @@ Puppet::Type.newtype(:rlimit) do
   end
 
   newparam(:type) do
-    desc "resource limits type (see man 5 limits.conf)"
+    desc 'resource limits type (see man 5 limits.conf)'
 
     newvalues(:soft, :hard, :any)
     munge do |value|
@@ -114,7 +114,7 @@ Puppet::Type.newtype(:rlimit) do
   end
 
   validate do
-    if self[:domain] =~ %r{^%}
+    if self[:domain].match?(%r{^%})
       raise ArgumentError, 'domain which begins with % should represent only maxlogins limit' unless self[:item] == :maxlogins
     end
     if self[:item] == :nice || self[:item] == :priority

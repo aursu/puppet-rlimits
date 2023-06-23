@@ -77,7 +77,7 @@ Puppet::Type.type(:rlimit).provide(:ruby) do
   end
 
   def count_matches(regex)
-    lines.select { |l| l.match(regex) }.size
+    lines.count { |l| l.match(regex) }
   end
 
   ##
